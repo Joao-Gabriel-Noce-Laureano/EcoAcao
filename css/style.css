@@ -1,0 +1,126 @@
+/* Fontes e estilos gerais */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9; /* cor 1 */
+    color: #333;
+  }
+  
+  h1, h2 {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Cabeçalho */
+  header {
+    background-color: #008037; /* cor 2 */
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Conteúdo principal */
+  main {
+    padding: 2rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  section {
+    margin-bottom: 2rem;
+  }
+  
+  /* Imagens e ícones */
+  img {
+    max-width: 100%;
+    height: auto;
+    margin: 1rem 0;
+  }
+
+  img.mapa {
+    width: 500px; 
+    height: auto; 
+  }
+  
+  img.reciclagem {
+    width: 500px; 
+    height: auto; 
+  }
+
+  /* Estilo dos ícones */
+  .icones img {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    vertical-align: middle;
+  }
+  
+  /* Rodapé */
+  footer {
+    background-color: #222; /* cor 3 */
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  footer a {
+    color: #61dafb;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Formulário (login/cadastro) */
+  .form-container {
+    max-width: 400px;
+    margin: 4rem auto;
+    padding: 3rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  input, button {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    background-color: #008037;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #00662b;
+  }
+  
+  /* Links */
+  a {
+    transition: color 0.3s ease;
+  }
+  

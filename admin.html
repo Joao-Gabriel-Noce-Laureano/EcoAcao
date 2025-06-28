@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - EcoAção</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>EcoAção</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="principal.html">Principal</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="form-container">
+    <h2>Painel Admin - Cadastrar Usuários</h2>
+    <form id="adminForm">
+      <label for="nome">Nome do Usuário:</label>
+      <input type="text" id="nome" required>
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" required>
+
+      <button type="submit">Cadastrar</button>
+      <button type="button" onclick="limparFormulario()">Limpar</button>
+    </form>
+
+    <input type="text" id="pesquisa" placeholder="Pesquisar usuários..." oninput="pesquisarUsuarios()">
+    <button onclick="limparLista()">Excluir Todos</button>
+
+    <ul id="listaUsuarios"></ul>
+  </main>
+
+  <footer>
+    <div class="icones">
+      <img src="assets/icone1.png" alt="Ícone reciclagem" />
+      <img src="assets/icone2.png" alt="Ícone são paulo" />
+    </div>
+    <p>Desenvolvido por João Gabriel Noce Laureano | <a href="https://joao-gabriel-noce-laureano.github.io/CurriculumJoaoGabrielNoceLaureano/" target="_blank">Currículo</a></p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('adminForm');
+    const lista = document.getElementById('listaUsuarios');
+    const pesquisa = document.getElementById('pesquisa');
+
+    function obterUsuarios() {
+      return JSON.parse(localStorage.getItem('usuarios')) || [];
+    }
+
+    function salvarUsuarios(usuarios) {
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    }
+
+    function exibirUsuarios(filtro = '') {
+      const usuarios = obterUsuarios();
+      lista.innerHTML = '';
+      usuarios.forEach((user, index) => {
+        if (user.nome.toLowerCase().includes(filtro.toLowerCase()) || user.email.toLowerCase().includes(filtro.toLowerCase())) {
+          const li = document.createElement('li');
+          li.textContent = `${user.data} - ${user.nome} - ${user.email}`;
+          const btn = document.createElement('button');
+          btn.textContent = 'Excluir';
+          btn.onclick = () => excluirUsuario(index);
+          li.appendChild(btn);
+          lista.appendChild(li);
+        }
+      });
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const data = new Date().toLocaleString();
+
+      const usuarios = obterUsuarios();
+      usuarios.push({ nome, email, data });
+      salvarUsuarios(usuarios);
+      exibirUsuarios();
+      form.reset();
+    });
+
+    function limparFormulario() {
+      form.reset();
+    }
+
+    function excluirUsuario(index) {
+      const usuarios = obterUsuarios();
+      usuarios.splice(index, 1);
+      salvarUsuarios(usuarios);
+      exibirUsuarios(pesquisa.value);
+    }
+
+    function limparLista() {
+      if (confirm('Tem certeza que deseja excluir todos os usuários?')) {
+        localStorage.removeItem('usuarios');
+        exibirUsuarios();
+      }
+    }
+
+    function pesquisarUsuarios() {
+      exibirUsuarios(pesquisa.value);
+    }
+
+    // Inicializa lista ao carregar a página
+    exibirUsuarios();
+  </script>
+</body>
+</html>
